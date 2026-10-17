@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: cefe-opportunity-intelligence
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-6-astra
+      - key: DATABASE_URL
+        fromDatabase:
+          name: cefe-opportunities-db
+          property: connectionString
+databases:
+  - name: cefe-opportunities-db
+    plan: basic-256mb

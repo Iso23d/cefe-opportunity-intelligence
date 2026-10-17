@@ -1,0 +1,6 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+cefe_opportunities.db
+.streamlit/secrets.toml
